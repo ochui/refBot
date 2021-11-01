@@ -12,7 +12,7 @@ const Stage = require('telegraf/stage')
 const Scene = require('telegraf/scenes/base')
 const rateLimit = require('telegraf-ratelimit')
 const { text } = config
-const bot = new telegraf(data.token, { telegram: { webhookReply: false } })
+const bot = new telegraf(data.token)
 let db;
 let sub_user;
 let firstStart = false;
@@ -39,8 +39,8 @@ mongo.connect(data.mongoLink, { useNewUrlParser: true, useUnifiedTopology: true 
   }
 
   db = client.db('refbot')
-  bot.startWebhook('/refbot', null, 2104)
-  bot.startPolling()
+  // bot.startWebhook('/refbot', null, 2104)
+  // bot.startPolling()
 })
 
 
@@ -646,3 +646,6 @@ bot.catch((err) => {
 process.on('uncaughtException', (err) => {
   sendError(err)
 })
+
+
+module.exports.bot = bot;
