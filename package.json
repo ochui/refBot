@@ -19,6 +19,8 @@
         "start": "nodemon app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
-    "license": "MIT"
+    "author": "Ochui Princewill",
+    "engines": {
+        "node": "16.x"
+    }
 }

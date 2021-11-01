@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.post(`/${secretPath}`, (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     return bot.handleUpdate(req.body, res)
 });
 

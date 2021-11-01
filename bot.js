@@ -512,17 +512,14 @@ bot.command('getmembers', async (ctx) => {
 
 
 async function checkSub(ctx, inv) {
-  console.log('Checking Sub')
   // Retrieve the current user from the DB
   let dbData = await db.collection('allUsers').find({ userId: ctx.from.id }).toArray()
   // If this is the first time the user starts the bot
   if (dbData.length === 0) {
 
-    console.log('First time user')
     // The variable indicating that this is the first time it is started is set to TRUE and is added to the list of users in the DB
     firstStart = true;
     if (inv) {
-      console.log(text.hello + ctx.from.id)
       db.collection('allUsers').insertOne({ userId: ctx.from.id, name: ctx.from.first_name, inviter: +ctx.match[1], paid: false, payments: 0 });
       bot.telegram.sendMessage(+ctx.match[1], '⭐️ Well done!\n\n' + ctx.from.first_name + ' he used yours link referral!',
         Extra
@@ -550,8 +547,6 @@ async function checkSub(ctx, inv) {
     }
     
   }
-
-  console.log('end loop')
 
   // If the invited user was already a member of the channels
   if (firstStart && sub_user) {
@@ -636,8 +631,6 @@ async function sendError(err, ctx) {
     })
   }
 }
-
-bot.hears('test', ctx => console.log(ctx))
 
 bot.catch((err) => {
   sendError(err)
